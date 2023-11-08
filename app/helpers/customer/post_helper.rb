@@ -1,0 +1,2 @@
+module Customer::PostHelper
+end

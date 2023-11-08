@@ -1,0 +1,58 @@
+<!--顧客の登録情報編集する画面-->
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h5 class="border p-3 my-3">
+      会員情報編集
+    </h5>
+  </div>
+
+  <div class="row d-flex justify-content-center">
+      <%= form_with model: @user, url: user_path, method: :patch do |f| %>
+      <table class="table table-borderless">
+          <tr>
+            <td width="30%">ニックネーム</td>
+            <td><%= f.text_field :nick_name, class: "rounded" %></td>
+          </tr>
+          
+          <tr>
+            <td width="30%">名前</td>
+            <td><%= f.text_field :name, class: "rounded" %></td>
+          </tr>
+
+          <tr>
+            <td width="30%">フリガナ</td>
+            <td><%= f.text_field :furigana_name, class: "rounded" %></td>
+          </tr>
+
+          <tr>
+          <td width="30%">性別</td>
+          <td><%= f.text_field :sex, class: "rounded" %></td>
+          <td></td>
+          </tr>
+          
+          <tr>
+          <td width="30%">メールアドレス</td>
+          <td><%= f.text_field :email, class: "rounded" %></td>
+          <td></td>
+          </tr>
+          
+          <tr>
+          <td width="30%">パスワード</td>
+          <td><%= f.text_field :encrypted_password, class: "rounded" %></td>
+          <td></td>
+          </tr>
+          
+          <tr colspan="2">
+          <td width="30%">自己紹介</td>
+          <td><%= f.text_field :introduction, size: "50%", class: "rounded" %></td>
+          <td></td>
+          </tr>
+          
+        </table>
+          <div class=" d-flex justify-content-center m-2">
+            <%= f.submit "編集内容を保存", class:"btn btn-success mx-2" %>
+            <%= link_to "退会する", users_quit_path, class:"btn btn-danger mx-2" %>
+          </div>
+      <% end %>
+  </div>
+</div>
