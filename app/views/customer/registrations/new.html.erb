@@ -1,29 +1,94 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "customers/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h5 class="border p-3 my-3">
+      新規会員登録
+    </h5>
+  </div>
+  <br>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "customer/shared/error_messages", resource: resource %>
+    
+  <div class="row d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :nick_name, "ニックネーム" %>
+    </div>
+    <div class="col-7">
+      <%= f.text_field :nick_name, placeholder: "れいちぇる", class: "rounded" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :name, "名前" %>
+    </div>
+    <div class="col-7">
+      <%= f.text_field :name , placeholder: "美爪麗子", class: "rounded" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="row d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :furigana_name, "フリガナ" %>
+    </div>
+    <div class="col-7">
+      <%= f.text_field :furigana_name, placeholder: "ビツメレイコ", class: "rounded" %>
+    </div>
+  </div>
+  
+  <div class="row d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :sex,"性別", class: "rounded" %>
+    </div>
+    <div class="col-7">
+      <!--ボタン選択-->
+      <%= f.text_field :sex, placeholder: "", class: "rounded" %>
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+  <div class="row d-flex justify-content-center">
+     <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :email, "メールアドレス" %>
+    </div>
+    <div class="col-7">
+      <%= f.email_field :email, placeholder: "sample@example.com", class: "rounded" %>
+    </div>
   </div>
-<% end %>
-
-<%= render "customers/shared/links" %>
+  
+  <div class="row d-flex justify-content-center">
+    <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :password, "パスワード" %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %>文字以上)</em>
+      <% end %>
+    </div>
+    <div class="col-7">
+      <%= f.password_field :password, autocomplete: "new-password", class: "rounded" %>
+    </div>
+  </div>
+  
+  <div class="row d-flex justify-content-center">
+     <div class="col-2"></div>
+    <div class="col-3">
+      <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    </div>
+    <div class="col-7">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded" %>
+    </div>
+    <div>
+      <%= f.submit "新規登録", class:"btn btn-success" %>
+    </div>
+  </div>
+  
+  <% end %>
+  
+  <div class="row d-flex justify-content-center my-4">
+    <h6 class="">既に登録済みの方は<%= render "customers/shared/links" %></h6>
+  </div>
+  
+</div>

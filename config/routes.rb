@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
   devise_for :users
+  
+  devise_scope :users do
+    get '/users', to: redirect("/users/sign_up")
+  end
 #"表示URL"=>"controller#action" で表示ページを記載
   root to: 'customer/homes#top'
     #get 'top' => 'customer/homes#top'
