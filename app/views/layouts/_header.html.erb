@@ -14,7 +14,7 @@
             </li>
 
             <li class="nav-item">
-              <%= link_to "新規投稿", xxxx_path, class: 'nav-link text-light m-2' %>
+              <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light m-2' %>
             </li>
 
             <li class="nav-item">
@@ -37,6 +37,10 @@
               <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light m-2' %>
             </li>
           <% else %>
+             <li class="nav-item">
+              <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path,, method: :post, class: 'nav-link text-light m-2' %>
+            </li>
+          
             <li class="nav-item">
               <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light m-2' %>
             </li>

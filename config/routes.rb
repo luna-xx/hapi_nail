@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   
   devise_scope :users do
     get '/users', to: redirect("/users/sign_up")
+    # ゲストユーザーログイン
+    post 'users/guest_sign_in', to: "customer/sessions#guest_sign_in"
   end
 #"表示URL"=>"controller#action" で表示ページを記載
   root to: 'customer/homes#top'
@@ -13,7 +15,7 @@ Rails.application.routes.draw do
     get   'user/my_page' => "users#show"
     get   'user/quit' => "users#quit"
     patch 'user/withdraw' => "users#withdraw"
-    resources :users, only: [:edit, :update]
+    resources :users, only: [:index, :show, :edit, :update]
   end
 
   scope module: :customer do
