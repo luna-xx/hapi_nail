@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   
-  devise_scope :users do
+  devise_scope :user do
     get '/users', to: redirect("/users/sign_up")
     # ゲストユーザーログイン
     post 'users/guest_sign_in', to: "customer/sessions#guest_sign_in"
@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     # get 'post/update'
     # get 'post/destroy'
     # get 'post/show'
-    resources :posts, only: [:show, :edit, :update, :destroy]
+    resources :posts, only: [:new, :show, :edit, :update, :destroy]
   end
 
   devise_for :customers, controllers: {

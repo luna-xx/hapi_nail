@@ -1,1 +1,14 @@
 インスタ風マイページ
+
+<!--ユーザーがサインインの場合-->
+<% if user_signed_in? && @user == current_user %>
+ <!--プロフィール編集ボタン-->
+ <p class="d-flex justify-content-end">
+   <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
+ </p>
+ <% end %>
+ <!--プロフィール画像-->
+ <div class="d-flex">
+   <%= mount_uploader_image_tag @user, :top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 top-img" %>
+   <h4 class="ml-3 mb-3 card w-100"><%= @user.profile %></h4>
+ </div>

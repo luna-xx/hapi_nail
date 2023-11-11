@@ -1,55 +1,67 @@
 <!--ヘッダー-->
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d1b3aa;">
-    <div class="container">
-      <a class="navbar-brand" href="/">HapiNail</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
-          <% if user_signed_in? %>
-            <li class="nav-item">
-              <%= link_to 'マイページ', users_my_page_path, class: 'nav-link text-light m-2' %>
-            </li>
+<!--基本的なナビゲーションバーの構造定義-->
+<!--navbar-lightでバーの色をライトに指定-->
+<!--style属性で背景色を指定-->
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d1b3aa;">
+  <div class="container">
+    <!--サイトのロゴやブランドリンク表示-->
+    <a class="navbar-brand" href="/">HapiNail</a>
+    <!--ハンバーガーメニュー-->
+    <!--レスポンシブデザインのメニューボタン-->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <!--ナビゲーションメニュー-->
+    <!--ハンバーガーメニューコンテンツが折りたたまれている要素-->
+    <!--data-targetでメニューボタンと関連付け-->
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <!--class="navbar-nav ml-auto"でナビゲーションメニューのリスト表示、ml-autoはメニュー項目を右寄せに配置-->
+      <ul class="navbar-nav ml-auto">
+        <!--ユーザーがサインインの場合-->
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to 'マイページ', user_my_page_path, class: 'nav-link text-light m-2' %>
+          </li>
 
-            <li class="nav-item">
-              <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light m-2' %>
-            </li>
+          <li class="nav-item">
+            <%= link_to "新規投稿", new_post_path, class: 'nav-link text-light m-2' %>
+          </li>
 
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light m-2' %>
-            </li>
-          <% elsif admin_signed_in? %>
-            <li class="nav-item">
-              <%= link_to "投稿一覧", admin_items_path, class: 'nav-link text-light m-2' %>
-            </li>
-          
-            <li class="nav-item">
-              <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light m-2' %>
-            </li>
-          
-             <li class="nav-item">
-              <%= link_to "タグ一覧", admin_genres_path, class: 'nav-link text-light m-2' %>
-            </li>
-          
-            <li class="nav-item">
-              <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light m-2' %>
-            </li>
-          <% else %>
-             <li class="nav-item">
-              <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path,, method: :post, class: 'nav-link text-light m-2' %>
-            </li>
-          
-            <li class="nav-item">
-              <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light m-2' %>
-            </li>
-                
-            <li class="nav-item">
-              <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light m-2' %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light m-2' %>
+          </li>
+        <!--管理者がサインインの場合-->
+        <% elsif admin_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "投稿一覧", admin_posts_path, class: 'nav-link text-light m-2' %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "会員一覧", admin_customers_path, class: 'nav-link text-light m-2' %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "タグ一覧", admin_tags_path, class: 'nav-link text-light m-2' %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: 'nav-link text-light m-2' %>
+          </li>
+        <!--それ以外の場合-->
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "ゲストログイン(閲覧用)", users_guest_sign_in_path, method: :post, class: 'nav-link text-light m-2' %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light m-2' %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light m-2' %>
+          </li>
+        <% end %>
+      </ul>
     </div>
-  </nav>
+  </div>
+</nav>

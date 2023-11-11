@@ -1,14 +1,21 @@
-<!--顧客の登録情報編集する画面-->
+<!--会員登録情報編集-->
 <div class="container">
   <div class="row d-flex justify-content-center">
     <h5 class="border p-3 my-3">
-      会員情報編集
+      プロフィール編集
     </h5>
   </div>
 
   <div class="row d-flex justify-content-center">
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
       <table class="table table-borderless">
+          
+          <tr>
+            <td>プロフィール画像</td><br>
+            <td><%= mount_uploader_image_tag @user, :top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></td><br>
+            <td><%= f.attachment_field :top_image, placeholder: "プロフィール画像" %></td>
+          </tr>
+          
           <tr>
             <td width="30%">ニックネーム</td>
             <td><%= f.text_field :nick_name, class: "rounded" %></td>

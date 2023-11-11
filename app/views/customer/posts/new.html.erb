@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h5 class="border p-3 my-3">
+      新規投稿
+    </h5>
+　</div>
+
+    <div class="row d-flex justify-content-center">
+      <!--<%= render "layouts/errors", obj: @post %>-->
+
+ 　　 <%= form_with model: @post, local: true do |form| %>%>
+      <table class="table table-borderless">
+        <!--imageの入力フォーム-->
+        <tr>
+          <td>投稿画像</td>
+          <td><%= f.file_field :image, accept: "image/*", class: "rounded" %></td>
+        </tr>
+        <!--titleの入力フォーム-->
+        <tr>
+          <td>タイトル</td>
+          <td><%= f.text_field :title, style: "width:70%", placeholder: "商品名", class: "rounded" %></td>
+        </tr>
+        <!--textの入力フォーム-->
+        <tr>
+          <td>投稿内容</td>
+          <td><%= f.text_area :text, style: "width:70%", rows: "5", placeholder: "ここに説明文を記述します", class: "rounded" %></td>
+        </tr>
+
+    </table>
+    <div class="row d-flex justify-content-center">
+      <!--投稿ボタン-->
+      <tr>
+        <td><%= f.submit "新規投稿", class:"btn btn-success" %></td>
+      </tr>
+    </div>
+    <% end %>
+    </div>
+  </div>
+</div>

@@ -62,3 +62,5 @@ gem 'jquery-rails'
 
 gem "enum_help"
 
+gem 'carrierwave'
+gem 'mini_magick'
