@@ -16,8 +16,9 @@ class Customer::PostController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @comment = Comment.new
   end
-  
+
   # 投稿データの保存
   def create
     #データを新規登録するためのインスタンス生成

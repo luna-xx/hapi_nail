@@ -29,7 +29,10 @@ Rails.application.routes.draw do
     # post 'posts' => 'posts#create'
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     # delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
+      resources :comments, only: [:create]
   end
+  
+  
 
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
