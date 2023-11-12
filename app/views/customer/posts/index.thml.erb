@@ -2,11 +2,14 @@
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
-
-  <p>タイトル</p>
-  <span><%= post.title %></span>
+  
+  <p>ユーザーネーム</p>
+  <span><%= post.user.name %></span>
   
   <p>画像</p>
   <%= link_to image_tag post.image, post_path(post.id), size: "200x200" %>
-    
+  
+  <p>タイトル</p>
+  <span><%= post.title %></span>
+  
 <% end %>

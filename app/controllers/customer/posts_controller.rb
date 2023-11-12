@@ -17,10 +17,12 @@ class Customer::PostController < ApplicationController
   def show
     @post = Post.find(params[:id])
   end
-
+  
+  # 投稿データの保存
   def create
     #データを新規登録するためのインスタンス生成
     @post = Post.new(post_params)
+    @post.user_id = current_user.id
     #データをデータベースに保存するためのsaveメソッド実行
     @post.save
     #マイページ画面へリダイレクト

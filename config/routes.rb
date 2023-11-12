@@ -12,10 +12,10 @@ Rails.application.routes.draw do
     #get 'top' => 'customer/homes#top'
 
   scope module: :customer do
+    resources :users, only: [:index, :edit, :update, :create]
     get   'user/my_page' => "users#show"
     get   'user/quit' => "users#quit"
     patch 'user/withdraw' => "users#withdraw"
-    resources :users, only: [:index, :show, :edit, :update]
   end
 
   scope module: :customer do
@@ -23,11 +23,11 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
-    resources :posts
+    resources :posts, only: [:new, :create, :index, :show, :destroy]
     # get 'posts/:id' => 'posts#show', as: 'post'
-    # get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
+    get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
     # post 'posts' => 'posts#create'
-    # patch 'posts/:id' => 'posts#update', as: 'update_post'
+    patch 'posts/:id' => 'posts#update', as: 'update_post'
     # delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
   end
 
