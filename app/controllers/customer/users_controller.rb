@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class Customer::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
   
@@ -47,4 +47,5 @@ class UsersController < ApplicationController
     if @user.guest_user?
       redirect_to user_path(current_user) , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません"
     end
+  end
 end

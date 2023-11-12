@@ -1,2 +1,11 @@
-<h1>Customer::Post#show</h1>
-<p>Find me in app/views/customer/post/show.html.erb</p>
+<h2>タイトル</h2>
+<p><%= @post.title %></p>
+
+<h2>本文</h2>
+<p><%= @post.text %></p>
+
+<h2>画像</h2>
+<%= link_to image_tag post.image, post_path(post.id), size: "300x300" %>
+  
+<%= link_to "編集", edit_post_path(@post.id) %>
+<%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>

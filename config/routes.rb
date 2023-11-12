@@ -23,11 +23,12 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
-    # get 'post/edit'
-    # get 'post/update'
-    # get 'post/destroy'
-    # get 'post/show'
-    resources :posts, only: [:new, :show, :edit, :update, :destroy]
+    resources :posts
+    # get 'posts/:id' => 'posts#show', as: 'post'
+    # get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
+    # post 'posts' => 'posts#create'
+    # patch 'posts/:id' => 'posts#update', as: 'update_post'
+    # delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
   end
 
   devise_for :customers, controllers: {
@@ -50,8 +51,8 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get 'post/edit'
-    get 'post/show'
+    post 'posts' => 'posts#create'
+    resources :posts, only: [:index, :show, :edit]
   end
 
 
