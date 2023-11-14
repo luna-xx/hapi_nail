@@ -25,7 +25,17 @@
           <td>投稿内容</td>
           <td><%= f.text_area :text, style: "width:70%", rows: "5", placeholder: "ここに説明文を記述します", class: "rounded" %></td>
         </tr>
-
+        <!--タグ入力フォーム-->
+        <%= form_with model: post, local: true do |f| %>
+          <div class="field">
+            <%= f.label :tag_list %>
+            <%= f.text_field :tag_list %>
+          </div>
+          
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+          
     </table>
     <div class="row d-flex justify-content-center">
       <!--投稿ボタン-->

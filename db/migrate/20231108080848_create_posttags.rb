@@ -1,10 +1,15 @@
 class CreatePosttags < ActiveRecord::Migration[6.1]
   def change
     create_table :posttags do |t|
-      t.integer :post_id
-      t.integer :tag_id
-      
+      t.integer :post_id, null: false
+      t.integer :tag_id, null: false
+
       t.timestamps
     end
+
+    add_index :posttags, [:post_id, :tag_id], unique: true
+    add_foreign_key :posttags, :posts
+    add_foreign_key :posttags, :tags
+
   end
 end

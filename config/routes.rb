@@ -20,6 +20,8 @@ Rails.application.routes.draw do
 
   scope module: :customer do
     get 'tag/index' => "tags#index"
+    # タグ検索
+    get 'search_tag' => "posts#search_tag"
   end
 
   scope module: :customer do
@@ -29,7 +31,7 @@ Rails.application.routes.draw do
     # post 'posts' => 'posts#create'
     patch 'posts/:id' => 'posts#update', as: 'update_post'
     # delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
   end
   
   
