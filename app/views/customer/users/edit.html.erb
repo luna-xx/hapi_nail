@@ -12,8 +12,8 @@
           
           <tr>
             <td>プロフィール画像</td><br>
-            <td><%= mount_uploader_image_tag @user, :top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></td><br>
-            <td><%= f.attachment_field :top_image, placeholder: "プロフィール画像" %></td>
+            <td><%= image_tag @user.top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></td><br>
+            <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>
           </tr>
           
           <tr>
@@ -45,7 +45,7 @@
           
           <tr>
           <td width="30%">パスワード</td>
-          <td><%= f.text_field :encrypted_password, class: "rounded" %></td>
+          <td><%= f.text_field :password, class: "rounded" %></td>
           <td></td>
           </tr>
           

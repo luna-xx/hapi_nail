@@ -1,33 +1,31 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  # devise :database_authenticatable, :registerable,
-  #       :recoverable, :rememberable, :validatable
-  
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  
+        :recoverable, :rememberable, :validatable
+
   has_many :comments, dependent: :destroy
-  has_many :post,     dependent: :destroy
+  has_many :posts,     dependent: :destroy
+  # プロフィール画像
   has_one_attached :top_image
-  
+
   validates :nick_name,     presence: true
   validates :name,          presence: true
   validates :furigana_name, presence: true
   validates :sex,           presence: true
   validates :email,         presence: true
   validates :encrypted_password, presence: true, length: { minimum: 7 }
-  
-  def get_top_image
-    unless top_image.attached?
-      file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
-      top_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+
+  # ユーザーのプロフィール画像を指定したサイズにリサイズ処理
+  def get_top_image(width, height)
+    if top_image.attached? && top_image.blob.present?
+      top_image.variant(resize_to_limit: [width, height]).processed
+    else
+      # ファイルがアタッチされていない場合の処理（デフォルト画像など）
+      image_tag('default-image.jpg', size: "#{width}x#{height}")
     end
-    top_image.variant(resize_to_limit: [width, height]).processed
   end
-  
-  
-  
+
   # ゲストログイン
   GUEST_USER_EMAIL = "guest@example.com"
 
@@ -44,8 +42,4 @@ class User < ApplicationRecord
     def guest_user?
       email == GUEST_USER_EMAIL
     end
-
-    mount_uploader :top_image, TopImageUploader
-    
-    
   end

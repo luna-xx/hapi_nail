@@ -4,14 +4,23 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
   def change
     create_table :users do |t|
       ## Database authenticatable
+      # ニックネーム
       t.string :nick_name,          null: false
+      # 名前
       t.string :name,               null: false
-      t.string :furigana_last_name, null: false
+      # ナマエ
+      t.string :furigana_name,      null: false
+      # 性別
       t.string :sex,                null: false
-      t.string :top_image,          null: false
+      # プロフィール画像
+      t.string :top_image,          default: "no_image.jpg"
+      # メールアドレス
       t.string :email,              null: false, default: ""
+      # 暗号化されたパスワード
       t.string :encrypted_password, null: false, default: ""
-      t.string :introduction,       null: false
+      # プロフィール文
+      t.string :introduction
+      # 会員ステータス
       t.boolean :is_active,         null: false, default: true
 
       ## Recoverable
@@ -39,7 +48,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       # t.string   :unlock_token # Only if unlock strategy is :email or :both
       # t.datetime :locked_at
 
-
+      # 日時
       t.timestamps null: false
     end
 

@@ -9,6 +9,21 @@
   </div>
   
   <div class="field">
+  <%= f.label :nick_name %><br>
+  <%= f.text_field :nick_name %>
+</div>
+
+<div class="field">
+  <%= f.label :furigana_name %><br>
+  <%= f.text_field :furigana_name %>
+</div>
+
+<div class="field">
+  <%= f.label :sex %><br>
+  <%= f.select :sex, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']], prompt: 'Select Gender' %>
+</div>
+  
+  <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>

@@ -20,7 +20,7 @@
         <!--ユーザーがサインインの場合-->
         <% if user_signed_in? %>
           <li class="nav-item">
-            <%= link_to 'マイページ', user_my_page_path, class: 'nav-link text-light m-2' %>
+            <%= link_to 'マイページ', user_my_page_path(current_user.id), class: 'nav-link text-light m-2' %>
           </li>
 
           <li class="nav-item">
@@ -28,7 +28,7 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: 'nav-link text-light m-2' %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-light m-2' %>
           </li>
         <!--管理者がサインインの場合-->
         <% elsif admin_signed_in? %>
@@ -54,11 +54,11 @@
           </li>
 
           <li class="nav-item">
-            <%= link_to "新規登録", new_customer_registration_path, class: 'nav-link text-light m-2' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'nav-link text-light m-2' %>
           </li>
 
           <li class="nav-item">
-            <%= link_to "ログイン", new_customer_session_path, class: 'nav-link text-light m-2' %>
+            <%= link_to "ログイン", new_user_session_path, class: 'nav-link text-light m-2' %>
           </li>
         <% end %>
       </ul>

@@ -4,7 +4,7 @@ class Post < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :posttags, dependent: :destroy
   has_many :tags,     through: :posttags
-  
+  has_many_attached :images
   
   def get_image
     if image.attached?

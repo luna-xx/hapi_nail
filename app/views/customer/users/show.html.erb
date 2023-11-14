@@ -2,25 +2,15 @@
 
 <!--ユーザーがサインインの場合-->
 <% if user_signed_in? && @user == current_user %>
- <!--プロフィール編集ボタン-->
- <p class="d-flex justify-content-end">
-   <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
- </p>
+  <!--ユーザーの詳細-->
+  <div class="d-flex justify-content-center">
+    <h4><%= @user.name %></h4>
+    <%= image_tag @user.get_top_image(100,100) %>
+    <% if @user.id == current_user.id %>
+      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %></p>
+    <% end %>
+  </div>
 <% end %>
- <!--プロフィール画像-->
- <div class="d-flex">
-   <%= mount_uploader_image_tag @user, :top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 top-img" %>
-   <h4 class="ml-3 mb-3 card w-100"><%= @user.profile %></h4>
- </div>
- 
- <!--ユーザーの詳細-->
- <div>
-  <h3><%= @user.name %></h3>
-  <%= image_tag @user.get_top_image(100,100) %>
-  <% if @user.id == current_user.id %>
-  <p><%= link_to "プロフィール編集", edit_user_path(@user) %></p>
-  <% end %>
-</div>
  
  <!-- ユーザーの投稿一覧 -->
 <% @post.each do |post| %>
@@ -31,5 +21,6 @@
     <p>投稿ユーザー画像：<%= image_tag post.user.get_top_image(100,100) %></p>
     <p>投稿内容：<%= post.introduction %></p>
     <p>ユーザーネーム：<%= post.user.name %></p>
-    <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>  </div>
+    <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>  
+  </div>
 <% end %>

@@ -4,7 +4,7 @@ class Customer::UsersController < ApplicationController
   
   def show
     @user = User.find_by(params[:id])
-    @post.get_image
+    @post = @user.posts
   end
   
   def new
@@ -26,6 +26,7 @@ class Customer::UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
+    @user.top_image.attach(params[:user][:top_image]) if params[:user][:top_image]
     @user.update(user_params)
     redirect_to user_path(@user.id)
   end

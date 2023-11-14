@@ -40,9 +40,14 @@ class Customer::PostController < ApplicationController
   end
 
   def update
-    post = Post.find(params[:id])
-    post.update(post_params)
-    redirect_to post_path(post.id)
+    @post = Post.find(params[:id])
+    tag_list = params[:post][:name].split(',')
+    if @post.update(post_params)
+      @post.save_tags(tag_list)
+      redirect_to post_path(post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
