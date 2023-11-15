@@ -25,17 +25,18 @@ Rails.application.routes.draw do
   end
 
   scope module: :customer do
-    resources :posts, only: [:new, :create, :index, :show, :destroy]
-    # get 'posts/:id' => 'posts#show', as: 'post'
-    get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
-    # post 'posts' => 'posts#create'
-    patch 'posts/:id' => 'posts#update', as: 'update_post'
-    # delete 'posts/:id' => 'posts#destroy', as: 'destroy_post'
+    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+      resource  :favorite, only: [:create, :destroy]
       resources :comments, only: [:create, :destroy]
+    end
+    get 'posts/:id/edit' => 'posts#edit', as: 'edit_post'
+    patch 'posts/:id' => 'posts#update', as: 'update_post'
   end
   
+  get "/search", to: "searches#search"
   
-
+  resources :favorites, only: [:index]
+  
   devise_for :customers, controllers: {
   sessions:      'customers/sessions',
   passwords:     'customers/passwords',

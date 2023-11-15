@@ -1,0 +1,8 @@
+<!--キーワード検索機能-->
+<% if user_signed_in? %>
+  <%= form_tag(search_path, method: :get) do %>
+    <%= label_tag :keyword, "キーワード検索:" %>
+    <%= text_field_tag :keyword, params[:keyword] %>
+    <%= submit_tag "検索" %>
+  <% end %>
+<% end %>

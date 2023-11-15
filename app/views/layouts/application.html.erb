@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <!-- FontAwesomeの読み込み -->
+    <script src="https://kit.fontawesome.com/daac8c39ac.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  
+  <!--ヘッダーの部分テンプレート-->
   <%= render 'layouts/header' %>
 
   <body>
     <%= yield %>
   </body>
-  
+  <!--フッターの部分テンプレート-->
   <%= render 'layouts/footer' %>
   
 </html>

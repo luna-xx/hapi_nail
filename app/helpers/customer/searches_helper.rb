@@ -1,0 +1,2 @@
+module Customer::SearchesHelper
+end

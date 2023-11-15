@@ -1,10 +1,12 @@
 class Post < ApplicationRecord
-  has_one_attached :image
+  
   belongs_to :user
-  has_many :comments, dependent: :destroy
-  has_many :posttags, dependent: :destroy
-  has_many :tags,     through: :posttags
+  has_many :comments,  dependent: :destroy
+  has_many :posttags,  dependent: :destroy
+  has_many :tags,      through: :posttags
+  has_many :favorites, dependent: :destroy
   has_many_attached :images
+  has_one_attached :image
   
   def get_image
     if image.attached?
@@ -32,5 +34,9 @@ class Post < ApplicationRecord
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
     end
+  end
+  
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 end

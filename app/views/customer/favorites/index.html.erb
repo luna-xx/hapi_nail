@@ -1,0 +1,10 @@
+<h1>いいねした一覧</h1>
+
+<!--繰り返し処理-->
+<% @favorite_posts.each do |favorite| %>
+  <div>
+    <%= link_to post_path(post) do %>
+      <%= image_tag post.image_url, size: '100x100' %>
+    <% end %>
+  </div>
+<% end %>
