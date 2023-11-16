@@ -35,7 +35,7 @@ class User < ApplicationRecord
       find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
         # SecureRandom.urlsafe_base64 ランダムな文字列を生成するメソッド
         user.password = SecureRandom.urlsafe_base64
-        user.name = 'guestuser'
+        user.name = 'ゲスト'
       end
     end
 
@@ -43,4 +43,18 @@ class User < ApplicationRecord
     def guest_user?
       email == GUEST_USER_EMAIL
     end
-  end
+    
+    # 退会機能
+    # 有効会員はtrue、退会済み会員はfalse
+    enum is_active: {Available: true, Invalid: false}
+    
+    #is_activeがtrueの場合は有効会員(ログイン可能)
+    def active_for_authentication?
+      super && (self.is_active === "Available")
+    end
+    
+    def withdraw
+      update(is_active: false)
+    end
+    
+end

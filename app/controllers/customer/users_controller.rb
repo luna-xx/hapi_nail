@@ -10,7 +10,8 @@ class Customer::UsersController < ApplicationController
   def new
     @user = User.new
   end
-
+  
+  # 編集画面
   def edit
     @user = User.find(params[:id])
   end
@@ -31,10 +32,21 @@ class Customer::UsersController < ApplicationController
     redirect_to user_path(@user.id)
   end
 
+  # 退会確認画面
   def quit
+    # ユーザー情報を見つける
+    @user = User.find(params[:id])
   end
-
+  
+  # 退会画面
   def withdraw
+    # ログインしているユーザー情報を@userに格納
+    @user =User.find(current_user.id)
+    # 登録情報をInvalidに変更
+    @user.update(is_active: "Invalid")
+    # sessionIDをリセット
+    reset_session
+    redirect_to root_path
   end
   
   private
@@ -42,7 +54,7 @@ class Customer::UsersController < ApplicationController
   def user_params
     params.require(:user).permit(:name, :furogana_name, :sex, :nick_name,:introduction, :top_image, :email, :active)
   end
-  
+  # ゲストユーザー
   def ensure_guest_user
     @user = User.find(params[:id])
     # ゲストユーザーかどうかの判別
