@@ -2,12 +2,12 @@
 
 <%= form_with model: @user, url: user_registration_path do |f| %>
 <%= render "devise/shared/error_messages", resource: resource %>
-  
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
-  
+
   <div class="field">
   <%= f.label :nick_name %><br>
   <%= f.text_field :nick_name %>
@@ -22,7 +22,7 @@
   <%= f.label :sex %><br>
   <%= f.select :sex, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']], prompt: 'Select Gender' %>
 </div>
-  
+
   <div class="field">
     <%= f.label :email %><br />
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
@@ -42,6 +42,7 @@
   </div>
 
   <div class="actions">
+    <%= csrf_token %>
     <%= f.submit "Sign up" %>
   </div>
 <% end %>

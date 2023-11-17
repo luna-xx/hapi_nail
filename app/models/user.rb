@@ -10,10 +10,10 @@ class User < ApplicationRecord
   # プロフィール画像
   has_one_attached :top_image
 
-  validates :nick_name,     presence: true
-  validates :name,          presence: true
-  validates :furigana_name, presence: true
-  validates :sex,           presence: true
+  validates :nick_name,     presence: true, unless: :guest?
+  validates :name,          presence: true, unless: :guest?
+  validates :furigana_name, presence: true, unless: :guest?
+  validates :sex,           presence: true, unless: :guest?
   validates :email,         presence: true
   validates :encrypted_password, presence: true, length: { minimum: 7 }
 
@@ -28,14 +28,12 @@ class User < ApplicationRecord
   end
 
   # ゲストログイン
-  GUEST_USER_EMAIL = "guest@example.com"
+    GUEST_USER_EMAIL = "guest@example.com"
 
     def self.guest
-      # find_or_create_by データの検索と作成を自動的に判断して処理を行うメソッド
       find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
-        # SecureRandom.urlsafe_base64 ランダムな文字列を生成するメソッド
         user.password = SecureRandom.urlsafe_base64
-        user.name = 'ゲスト'
+        user.name = "ゲスト"
       end
     end
 
@@ -43,18 +41,18 @@ class User < ApplicationRecord
     def guest_user?
       email == GUEST_USER_EMAIL
     end
-    
-    # 退会機能
-    # 有効会員はtrue、退会済み会員はfalse
-    enum is_active: {Available: true, Invalid: false}
-    
-    #is_activeがtrueの場合は有効会員(ログイン可能)
-    def active_for_authentication?
-      super && (self.is_active === "Available")
-    end
-    
-    def withdraw
-      update(is_active: false)
-    end
-    
+
+  # 退会機能
+  # 有効会員はtrue、退会済み会員はfalse
+  enum is_active: {Available: true, Invalid: false}
+
+  #is_activeがtrueの場合は有効会員(ログイン可能)
+  def active_for_authentication?
+    super && (self.is_active === "Available")
+  end
+
+  def withdraw
+    update(is_active: false)
+  end
+
 end
