@@ -19,8 +19,12 @@
 </div>
 
 <div class="field">
-  <%= f.label :sex %><br>
-  <%= f.select :sex, [['Male', 'male'], ['Female', 'female'], ['Other', 'other']], prompt: 'Select Gender' %>
+  <!--<%= f.label :sex %><br>-->
+  <%= form_with model: @user do |f| %>
+    <%= f.label :sex, "性別" %>
+    <%= f.radio_button :sex, "male" %> 男性
+    <%= f.radio_button :sex, "female" %> 女性
+  <% end %>
 </div>
 
   <div class="field">

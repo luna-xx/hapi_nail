@@ -1,4 +1,6 @@
 class Admin::PostController < ApplicationController
+  # 管理者のみアクセスできるようにする
+  before_action :authenticate_admin!
   
   def index
     @posts = Post.all

@@ -1,13 +1,17 @@
 <!--全会員の投稿一覧-->
-<h1>投稿一覧</h1>
+<h1>全会員の投稿一覧</h1>
 
-<% @post.each do |post| %>
-  <div>
-    <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
-    <p>ユーザーネーム：<%= post.user.name %></p>
-    <%= link_to post_path(post_.id) do %>
+<% @posts.each do |post| %>
+  <tr>
+    <!--ユーザープロフィール画像-->
+    <td><%= image_tag post.user.get_top_image(100,100) %></td>
+    <td>ユーザーネーム：<%= post.user.name %></td>
+    <!--投稿画像-->
+    <td>
+    <%= link_to post_path(post.id) do %>
       <%= image_tag post.get_image %>
     <% end %>
-    <p>タイトル：<%= post.title %></p>
-  </div>
+    </td>
+    <td>タイトル：<%= post.title %></td>
+  </tr>
 <% end %>
