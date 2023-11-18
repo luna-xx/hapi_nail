@@ -1,2 +1,57 @@
-<h1>Admin::Post#show</h1>
-<p>Find me in app/views/admin/post/show.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+      <h5 class="border p-3 my-3">
+        投稿詳細
+      </h5>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <%= image_tag @post.image, size: "300x200" %>
+    </div>
+
+    <div class="col-md-5">
+      <table class="table table-borderless">
+
+        <tr>
+          <td class="bd-light">投稿ユーザー画像</td>
+          <td><%= image_tag 'xx' %></td>
+        </tr>
+        <tr>
+          <td class="bd-light">ニックネーム</td></td>
+          <td><%= post.user.name %></td>
+        </tr>
+        <tr>
+          <td class="bd-light">投稿画像</td></td>
+          <td><%= link_to image_tag post.image, post_path(post.id), size: "300x300" %></td>
+        </tr>
+        <tr>
+          <td class="bd-light">タイトル</td>
+          <td><%= @post.title %></td>
+        </tr>
+        <tr>
+          <td class="bd-light">投稿文</td>
+          <td><%= @post.text %></td>
+        </tr>
+        <tr>
+          <td class="bd-light">タグ</td>
+          <td>
+            <% @posttags.each do |tag| %>
+              <i class="fa-sharp fa-solid fa-tag"></i>
+           　  <%= link_to tag.name,search_tag_path_tag_id: tag.id) %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= @post.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="d-flex justify-content-center">
+    <%= link_to "コメント一覧", admin_comments, class:"btn btn-success ml-3" %>
+    <%= link_to "編集する", edit_admin_post_path, class:"btn btn-success ml-3" %>
+    <%= link_to "投稿削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+  </div>
+</div>
+

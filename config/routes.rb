@@ -48,6 +48,9 @@ Rails.application.routes.draw do
     
     # 投稿管理
     resources :posts, only: [:index, :show, :edit, :create]
+    
+    # コメント管理
+    get 'comments'
   end
 
   # Deviseのルーティング

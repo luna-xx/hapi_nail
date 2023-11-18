@@ -2,15 +2,15 @@
 <div>
   <p>投稿ユーザー画像：<%= image_tag 'sample-author1.jpg' %></p>
 
-  <p>ユーザーネーム：<%= post.user.name %></p>
+  <p>ニックネーム：<%= post.user.name %></p>
 
-  <h2>画像</h2>
+  <h2>投稿画像</h2>
   <%= link_to image_tag post.image, post_path(post.id), size: "300x300" %>
 
   <h2>タイトル</h2>
   <p><%= @post.title %></p>
 
-  <h2>本文</h2>
+  <h2>投稿文</h2>
   <p><%= @post.text %></p>
 
   <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
