@@ -10,10 +10,10 @@ class User < ApplicationRecord
   # プロフィール画像
   has_one_attached :top_image
 
-  validates :nick_name,     presence: true, unless: :guest?
-  validates :name,          presence: true, unless: :guest?
-  validates :furigana_name, presence: true, unless: :guest?
-  validates :sex,           presence: true, unless: :guest?
+  validates :nick_name,     presence: true, unless: :guest_user?, on: :update
+  validates :name,          presence: true, unless: :guest_user?
+  validates :furigana_name, presence: true, unless: :guest_user?
+  validates :sex,           presence: true, unless: :guest_user?
   validates :email,         presence: true
   validates :encrypted_password, presence: true, length: { minimum: 7 }
 
@@ -34,6 +34,10 @@ class User < ApplicationRecord
       find_or_create_by!(email: GUEST_USER_EMAIL) do |user|
         user.password = SecureRandom.urlsafe_base64
         user.name = "ゲスト"
+        # ゲストユーザーのデフォルトのニックネームを設定
+        user.nick_name = "ゲスト"
+        user.furigana_name = "ゲスト"
+        user.sex = "male"
       end
     end
 
