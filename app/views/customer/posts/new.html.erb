@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
-    <h5 class="border p-3 my-3">
+    <h5 class="p-3 my-3">
       新規投稿
     </h5>
 　</div>
 
-    <div class="row d-flex justify-content-center">
-      <!--<%= render "layouts/errors", obj: @post %>-->
+  <div class="row d-flex justify-content-center">
+  
 
- 　　 <%= form_with model: @post, local: true do |form| %>%>
+ 　  <%= form_with model: @post, local: true do |f| %>
       <table class="table table-borderless">
         <!--imageの入力フォーム-->
         <tr>
@@ -18,31 +18,23 @@
         <!--titleの入力フォーム-->
         <tr>
           <td>タイトル</td>
-          <td><%= f.text_field :title, style: "width:70%", placeholder: "商品名", class: "rounded" %></td>
+          <td><%= f.text_field :title, placeholder: "タイトル名", class: "rounded" %></td>
         </tr>
         <!--textの入力フォーム-->
         <tr>
           <td>投稿内容</td>
-          <td><%= f.text_area :text, style: "width:70%", rows: "5", placeholder: "ここに説明文を記述します", class: "rounded" %></td>
+          <td><%= f.text_area :text, style: "width:70%", rows: "5", placeholder: "ここに投稿文を記述します", class: "rounded" %></td>
         </tr>
         <!--タグ入力フォーム-->
-        <%= form_with model: post, local: true do |f| %>
-          <div class="field">
-            <%= f.label :tag_list %>
-            <%= f.text_field :tag_list %>
-          </div>
-          
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-          
+        <tr>
+          <td><%= f.label :tag_list, "タグリスト" %></td>
+          <td><%= f.text_field :tag_list, class: "rounded" %></td>
+        </tr>
+        <!--投稿ボタン-->
+        <tr class="row d-flex justify-content-center">
+          <td><%= f.submit "新規投稿", class:"btn btn-success" %></td>
+        </tr>
     </table>
-    <div class="row d-flex justify-content-center">
-      <!--投稿ボタン-->
-      <tr>
-        <td><%= f.submit "投稿", class:"btn btn-success" %></td>
-      </tr>
-    </div>
     <% end %>
     </div>
   </div>

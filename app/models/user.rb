@@ -18,12 +18,14 @@ class User < ApplicationRecord
   validates :encrypted_password, presence: true, length: { minimum: 7 }
 
   # ユーザーのプロフィール画像を指定したサイズにリサイズ処理
-  def get_top_image(width, height)
+  def get_top_image_url(width, height)
     if top_image.attached? && top_image.blob.present?
-      top_image.variant(resize_to_limit: [width, height]).processed
+      top_image.variant(resize: "#{width}x#{height}").processed.url
     else
       # ファイルがアタッチされていない場合の処理（デフォルト画像など）
-      image_tag('default-image.jpg', size: "#{width}x#{height}")
+      # image_tag(
+        'no_image.jpg'
+        # , size: "#{width}x#{height}")
     end
   end
 

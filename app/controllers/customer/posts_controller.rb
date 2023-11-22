@@ -1,4 +1,4 @@
-class Customer::PostController < ApplicationController
+class Customer::PostsController < ApplicationController
 
   def new
     # 空のインスタンス生成
@@ -18,6 +18,7 @@ class Customer::PostController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = @post.user
     @comment = Comment.new
     @tag_list = @post.tags.pluck(:name).join(',')
     @posttags = @post.tags
@@ -28,13 +29,26 @@ class Customer::PostController < ApplicationController
     #データを新規登録するためのインスタンス生成
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    @post.tag_list = params[:post][:tag_list][:name].split(',')
+    
+    # 画像の処理
+    @post.image = params[:post][:images]
+    
+    # 画像の存在チェック
+    if params[:post][:images].blank?
+      @post.errors.add(:image, "画像を選択してください")
+      render :new
+      return
+    end
+    
     #データをデータベースに保存するためのsaveメソッド実行
-    if @post.save
-      @post.save_tags(tag_list)
+    if @post.image.present? && @post.save
+      # タグの保存
+       @post.tag_list = params[:post][:tag_list] if params[:post][:tag_list]
+   　   @post.save_tags
       #マイページ画面へリダイレクト
-      redirect_to post_path, notice: '投稿完了'
+      redirect_to post_path(@post), notice: '投稿完了'
     else
+      @post.errors.add(:image, "画像を選択してください")
       render :new
     end
   end

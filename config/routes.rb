@@ -13,11 +13,10 @@ Rails.application.routes.draw do
   
   # 会員ページ
   scope module: :customer do
-    resources :users, only: [:index, :edit, :update, :create]
+    resources :users, only: [:index, :show, :edit, :update, :create]
     get   'user/my_page'  => "users#show"
     get   'user/quit'     => "users#quit"
     patch 'user/withdraw' => "users#withdraw"
-    get '/users/:id', to: 'users#show', as: 'user'
   
   # タグ関連
     get 'tag/index'  => "tags#index"

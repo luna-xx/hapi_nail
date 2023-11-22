@@ -3,7 +3,9 @@ class Customer::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
   
   def show
-    @user = User.find_by(params[:id])
+    # @user = User.find(params[:id])
+    # 現在のログインユーザーを取得
+    @user = current_user
     @post = @user.posts
   end
   
@@ -52,7 +54,7 @@ class Customer::UsersController < ApplicationController
   private
   
   def user_params
-    params.require(:user).permit(:name, :furogana_name, :sex, :nick_name,:introduction, :top_image, :email, :active)
+    params.require(:user).permit(:name, :furogana_name, :sex, :nick_name, :introduction, :top_image, :email, :active)
   end
   # ゲストユーザー
   def ensure_guest_user

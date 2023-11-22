@@ -6,7 +6,11 @@ class Post < ApplicationRecord
   has_many :tags,      through: :posttags
   has_many :favorites, dependent: :destroy
   has_many_attached :images
-  has_one_attached :image
+  has_one_attached  :image
+  
+  validates :image, presence: true
+  validates :title, presence: true
+  validates :text,  presence: true
   
   def get_image
     if image.attached?
