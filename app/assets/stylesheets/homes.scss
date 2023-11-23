@@ -1,3 +1,55 @@
 // Place all the styles related to the homes controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+// スライドショー全体のコンテナに適用
+.slideshow-container {
+  width: 100%;
+  height: 800px;
+  // コンテナ外の要素を非表示
+  overflow: hidden;
+  position: relative;
+}
+
+// 各スライドに適用
+.slide {
+  width: 100%;
+  height: 800px;
+  // 画像がスライド内に収まるように表示
+　object-fit: contain;
+// 　スライドがコンテナ内で絶対位置になるように
+  position: absolute;
+}
+
+// 各スライド画像に適用
+.slide img {
+  // 画像をスライドの幅と高さに合わせて表示
+  width: inherit;
+  height: inherit;
+  // 余白、枠線を無くす
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+// 最初のスライドに適用
+.slide.fade:first-child {
+  // スライドをフェードインで表示
+  opacity: 1;
+}
+
+.backimage .text {
+  position: absolute;
+  top: 50%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.backimage .text .guidance {
+  font-size: 18px;
+  color: #fff;
+  background-color: rgba(255, 192, 203, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+}

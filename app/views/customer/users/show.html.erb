@@ -1,26 +1,35 @@
-インスタ風マイページ
-
-<!--ユーザーがサインインの場合-->
-<% if user_signed_in? && @user == current_user %>
-  <!--ユーザーの詳細-->
-  <div class="d-flex justify-content-center">
-    <h4><%= @user.name %></h4>
-    <%= image_tag @user.get_top_image_url(100,100) %>
-    <% if @user.id == current_user.id %>
-      <p><%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %></p>
-    <% end %>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <h5 class="p-3 my-3">
+      マイページ
+    </h5>
   </div>
-<% end %>
- 
- <!-- ユーザーの投稿一覧 -->
-<% @post.each do |post| %>
-  <div>
-    <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image %>
-    <% end %>
-    <p>ユーザーネーム：<%= post.user.name %></p>
-    <p>投稿ユーザー画像：<%= image_tag post.user.get_top_image_url(100,100) %></p>
-    <p>投稿内容：<%= post.text %></p>
-    <p><%= link_to "#{post.comments.count} コメント", post_path(post.id) %></p>  
-  </div>
-<% end %>
+  
+  <!--ユーザーがサインインの場合-->
+  <% if user_signed_in? && @user == current_user %>
+    <!--ユーザーの詳細-->
+    <div class="d-flex justify-content-center">
+      <h4><%= @user.name %></h4>
+      <%= image_tag @user.get_top_image_url(100,100) %>
+      <% if user_signed_in? && @user == current_user %>
+        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
+      <% end %>
+    </div>
+  <% end %>
+   
+   <!-- ユーザーの投稿一覧 -->
+  <% @post.each do |post| %>
+    <div>
+      <!--プロフィール画像-->
+      <tr><%= image_tag post.user.get_top_image_url(50,50) %></tr>
+      <!--ユーザーネーム-->
+      <tr><%= post.user.name %></tr>
+    </div>
+      <!--投稿画像-->
+      <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image %>
+      <% end %>
+      
+    
+  <% end %>
+</div>

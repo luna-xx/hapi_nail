@@ -15,7 +15,7 @@ class Customer::UsersController < ApplicationController
   
   # 編集画面
   def edit
-    @user = User.find(params[:id])
+    @user = current_user
   end
   
   def create

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   end
   
   # 会員ホーム
-  root to: 'customer/homes#top'
+  root 'customer/homes#top'
   
   # 会員ページ
   scope module: :customer do

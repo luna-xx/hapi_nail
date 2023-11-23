@@ -2,13 +2,14 @@
 <!--基本的なナビゲーションバーの構造定義-->
 <!--navbar-lightでバーの色をライトに指定-->
 <!--style属性で背景色を指定-->
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #d1b3aa;">
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #008BBB;">
   <div class="container">
     <!--サイトのロゴやブランドリンク表示-->
     <a class="navbar-brand" href="/">HapiNail</a>
     <!--ハンバーガーメニュー-->
     <!--レスポンシブデザインのメニューボタン-->
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+                  aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <!--ナビゲーションメニュー-->
@@ -17,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <!--class="navbar-nav ml-auto"でナビゲーションメニューのリスト表示、ml-autoはメニュー項目を右寄せに配置-->
       <ul class="navbar-nav ml-auto">
-        <!--ユーザーがサインインの場合-->
+        <!--ユーザ/ーがサインインの場合-->
         <% if user_signed_in? %>
           <li class="nav-item">
             <%= link_to 'マイページ', user_my_page_path(current_user.id), class: 'nav-link text-light m-2' %>
@@ -65,3 +66,4 @@
     </div>
   </div>
 </nav>
+
