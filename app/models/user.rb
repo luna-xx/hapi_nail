@@ -2,7 +2,14 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-        :recoverable, :rememberable, :validatable
+         :recoverable, :rememberable, :validatable
+         validates :nick_name,          presence: true, unless: :guest_user?, on: :update
+         validates :name,               presence: true, unless: :guest_user?
+         validates :furigana_name,      presence: true, unless: :guest_user?
+         validates :sex,                presence: true, unless: :guest_user?
+         validates :email,              presence: true
+         validates :encrypted_password, presence: true, length: { minimum: 7 }
+
 
   has_many :comments,  dependent: :destroy
   has_many :posts,     dependent: :destroy
@@ -10,12 +17,6 @@ class User < ApplicationRecord
   # プロフィール画像
   has_one_attached :top_image
 
-  validates :nick_name,     presence: true, unless: :guest_user?, on: :update
-  validates :name,          presence: true, unless: :guest_user?
-  validates :furigana_name, presence: true, unless: :guest_user?
-  validates :sex,           presence: true, unless: :guest_user?
-  validates :email,         presence: true
-  validates :encrypted_password, presence: true, length: { minimum: 7 }
 
   # ユーザーのプロフィール画像を指定したサイズにリサイズ処理
   def get_top_image_url(width, height)
@@ -23,9 +24,7 @@ class User < ApplicationRecord
       top_image.variant(resize: "#{width}x#{height}").processed.url
     else
       # ファイルがアタッチされていない場合の処理（デフォルト画像など）
-      # image_tag(
-        'no_image.jpg'
-        # , size: "#{width}x#{height}")
+      'no_image.jpg'
     end
   end
 

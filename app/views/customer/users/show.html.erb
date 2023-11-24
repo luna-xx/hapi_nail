@@ -21,13 +21,13 @@
   <% @post.each do |post| %>
     <div>
       <!--プロフィール画像-->
-      <tr><%= image_tag post.user.get_top_image_url(50,50) %></tr>
+      <tr><%= image_tag post.user.get_top_image_url(20,20) %></tr>
       <!--ユーザーネーム-->
       <tr><%= post.user.name %></tr>
     </div>
       <!--投稿画像-->
       <%= link_to post_path(post.id) do %>
-        <%= image_tag post.get_image %>
+        <%= image_tag post.get_image, size: '300x250' %>
       <% end %>
       
     

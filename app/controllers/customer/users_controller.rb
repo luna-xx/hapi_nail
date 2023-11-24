@@ -23,7 +23,7 @@ class Customer::UsersController < ApplicationController
     if @user.save
       redirect_to @user
     else
-      render 'new'
+      render 'my_page'
     end
   end
 

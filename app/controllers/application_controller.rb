@@ -10,11 +10,10 @@ def after_sign_out_path_for(resource_or_scope)
     root_path
 end
 
-protected
+private
 
 def configure_permitted_parameters
-  added_attrs = [ :nick_name, :name, :furigana_name, :sex]
-  devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+  devise_parameter_sanitizer.permit(:sign_up, keys: [ :nick_name, :name, :furigana_name, :sex])
 end
 
 end
