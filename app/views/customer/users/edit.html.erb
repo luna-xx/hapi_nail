@@ -1,26 +1,26 @@
 <!--会員登録情報編集-->
 <div class="container">
-  <div class="row d-flex justify-content-center">
-    <h5 class="border p-3 my-3">
+  <div class="d-flex justify-content-center">
+    <h2 class="d-inline-block border p-3 my-3">
       プロフィール編集
-    </h5>
+    </h2>
   </div>
 
   <div class="row d-flex justify-content-center">
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
       <table class="table table-borderless">
-          
+
           <tr>
             <td>プロフィール画像</td><br>
-            <td><%= image_tag @user.top_image, size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></td><br>
+            <td><%= image_tag @user.get_top_image_url(100, 100), size: '100x100', fallback: "no_image.png", class: "mb-3 profile-img" %></td><br>
             <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>
           </tr>
-          
+
           <tr>
             <td width="30%">ニックネーム</td>
             <td><%= f.text_field :nick_name, class: "rounded" %></td>
           </tr>
-          
+
           <tr>
             <td width="30%">名前</td>
             <td><%= f.text_field :name, class: "rounded" %></td>
@@ -36,36 +36,30 @@
           <td><%= f.text_field :sex, class: "rounded" %></td>
           <td></td>
           </tr>
-          
+
           <tr>
           <td width="30%">メールアドレス</td>
           <td><%= f.text_field :email, class: "rounded" %></td>
           <td></td>
           </tr>
-          
+
           <tr>
           <td width="30%">パスワード</td>
           <td><%= f.text_field :password, class: "rounded" %></td>
           <td></td>
           </tr>
-          
+
           <tr colspan="2">
           <td width="30%">プロフィール文</td>
           <td><%= f.text_field :introduction, size: "50%", class: "rounded" %></td>
           <td></td>
           </tr>
-          
+
         </table>
-          <!--ゲストユーザーかどうかの判別-->
-          <% unless user.guest_user? %>
-            <div class='row'>
-              <%= link_to '',edit_user_path(user),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{user.id}" %>
-            </div>
-          <% end %>
-        
-          <div class=" d-flex justify-content-center m-2">
+
+          <div class="d-flex justify-content-center m-2">
             <%= f.submit "編集内容を保存", class:"btn btn-success mx-2" %>
-            <%= link_to "退会する", users_quit_path, class:"btn btn-danger mx-2" %>
+            <%= link_to "退会する", user_quit_path, class:"btn btn-danger mx-2" %>
           </div>
       <% end %>
   </div>

@@ -1,23 +1,23 @@
 class Customer::UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_guest_user, only: [:edit]
-  
+
   def show
     # @user = User.find(params[:id])
     # 現在のログインユーザーを取得
     @user = current_user
     @post = @user.posts
   end
-  
+
   def new
     @user = User.new
   end
-  
+
   # 編集画面
   def edit
     @user = current_user
   end
-  
+
   def create
     @user = User.new(user_params)
     if @user.save
@@ -39,7 +39,7 @@ class Customer::UsersController < ApplicationController
     # ユーザー情報を見つける
     @user = User.find(params[:id])
   end
-  
+
   # 退会画面
   def withdraw
     # ログインしているユーザー情報を@userに格納
@@ -50,9 +50,9 @@ class Customer::UsersController < ApplicationController
     reset_session
     redirect_to root_path
   end
-  
+
   private
-  
+
   def user_params
     params.require(:user).permit(:name, :furogana_name, :sex, :nick_name, :introduction, :top_image, :email, :active)
   end

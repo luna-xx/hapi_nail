@@ -1,94 +1,92 @@
 <div class="container">
-  <div class="row d-flex justify-content-center">
-    <h5 class="border p-3 my-3">
+  <div class="d-flex justify-content-center">
+    <h2 class="d-inline-block border p-3 my-3">
       新規会員登録
-    </h5>
+    </h2>
   </div>
-  <br>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "customer/shared/error_messages", resource: resource %>
     
-  <div class="row d-flex justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :nick_name, "ニックネーム" %>
-    </div>
-    <div class="col-7">
-      <%= f.text_field :nick_name, placeholder: "れいちぇる", class: "rounded" %>
-    </div>
-  </div>
+    <%= form_with model: @user, url: user_registration_path do |f| %>
+    <%= render "customer/shared//error_messages", resource: resource %>
 
-  <div class="row d-flex justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :name, "名前" %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :name, "名前" %>
+      </div>
+      <div class="col-2">
+        <%= f.text_field :name %>
+      </div>
     </div>
-    <div class="col-7">
-      <%= f.text_field :name , placeholder: "美爪麗子", class: "rounded" %>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :nick_name, "ニックネーム" %>
+      </div>
+      <div class="col-2">
+        <%= f.text_field :nick_name %>
+      </div>
     </div>
-  </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :furigana_name, "フリガナ" %>
+      </div>
+      <div class="col-2">
+        <%= f.text_field :furigana_name %>
+      </div>
+    </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%#= form_with model: @user do |f| %>
+        <%= f.label :sex, "性別" %>
+      </div>
+        <div class="col-2">
+          <%= f.radio_button :sex, "male", id: "sex_male" %> 男性
+          <%= f.radio_button :sex, "female", id: "sex_female" %> 女性
+        </div>
+        <%# end %>
+      </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :email, "メールアドレス" %><br />
+      </div>
+      <div class="col-2">
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+    </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :password, "パスワード" %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+      </div>
+      <div class="col-2">
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+    </div>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-2">
+        <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
+      </div>
+      <div class="col-2">
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+    </div>
+    <br><br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-1">
+        <%= f.submit "新規登録", class:"btn btn-success" %>
+      </div>
+    </div>
+    <% end %>
+    <br>
+    <div class="row d-flex justify-content-center">
+      <div class="col-1"></div>
+      <h5 class="col-3">登録済みの方は<%= render "customer/shared//links" %></h5>
+    </div>
 
-  <div class="row d-flex justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :furigana_name, "フリガナ" %>
-    </div>
-    <div class="col-7">
-      <%= f.text_field :furigana_name, placeholder: "ビツメレイコ", class: "rounded" %>
-    </div>
-  </div>
-  
-  <div class="row d-flex justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :sex,"性別", class: "rounded" %>
-    </div>
-    <div class="col-7">
-      <!--ボタン選択-->
-      <%= f.text_field :sex, placeholder: "", class: "rounded" %>
-    </div>
-  </div>
-
-  <div class="row d-flex justify-content-center">
-     <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :email, "メールアドレス" %>
-    </div>
-    <div class="col-7">
-      <%= f.email_field :email, placeholder: "sample@example.com", class: "rounded" %>
-    </div>
-  </div>
-  
-  <div class="row d-flex justify-content-center">
-    <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :password, "パスワード" %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %>文字以上)</em>
-      <% end %>
-    </div>
-    <div class="col-7">
-      <%= f.password_field :password, autocomplete: "new-password", class: "rounded" %>
-    </div>
-  </div>
-  
-  <div class="row d-flex justify-content-center">
-     <div class="col-2"></div>
-    <div class="col-3">
-      <%= f.label :password_confirmation, "パスワード(確認用)" %>
-    </div>
-    <div class="col-7">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "rounded" %>
-    </div>
-    <div>
-      <%= f.submit "新規登録", class:"btn btn-success" %>
-    </div>
-  </div>
-  
-  <% end %>
-  
-  <div class="row d-flex justify-content-center my-4">
-    <h6 class="">既に登録済みの方は<%= render "customers/shared/links" %></h6>
-  </div>
-  
 </div>

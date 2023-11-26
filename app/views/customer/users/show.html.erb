@@ -4,18 +4,23 @@
       マイページ
     </h5>
   </div>
-  
-  <!--ユーザーがサインインの場合-->
-  <% if user_signed_in? && @user == current_user %>
-    <!--ユーザーの詳細-->
-    <div class="d-flex justify-content-center">
-      <h4><%= @user.name %></h4>
-      <%= image_tag @user.get_top_image_url(100,100) %>
-      <% if user_signed_in? && @user == current_user %>
-        <%= link_to "プロフィール編集", edit_user_path(@user), class: "btn-sm btn-success" %>
-      <% end %>
-    </div>
-  <% end %>
+
+    <!--ユーザーがサインインの場合-->
+    <% if user_signed_in? && @user == current_user %>
+      <!--ユーザーの詳細-->
+      <div class="d-flex justify-content-center">
+        <h4><%= @user.name %></h4>
+        <%= image_tag @user.get_top_image_url(100,100) %>
+        <!--ゲストユーザーかどうかの判別-->
+          <% unless @user.guest_user? %>
+            <div>
+              <%= link_to edit_user_path(@user),class: "btn btn-outline-secondary btn-block" do %>
+              <i class="fas fa-user-cog"></i> Edit
+              <% end %>
+            </div>
+          <% end %>
+      </div>
+    <% end %>
    
    <!-- ユーザーの投稿一覧 -->
   <% @post.each do |post| %>
