@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   devise_scope :user do
+    get '/users', to: redirect("/users/sign_up")
     # ゲストユーザーログイン
     post 'users/guest_sign_in', to: "customer/sessions#guest_sign_in"
   end
