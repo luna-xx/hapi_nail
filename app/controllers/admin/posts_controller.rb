@@ -1,4 +1,4 @@
-class Admin::PostController < ApplicationController
+class Admin::PostsController < ApplicationController
   # 管理者のみアクセスできるようにする
   before_action :authenticate_admin!
   
