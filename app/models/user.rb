@@ -59,5 +59,10 @@ class User < ApplicationRecord
   def withdraw
     update(is_active: false)
   end
+  
+  def user_status
+    # user_status の定義（is_active が "Available" の場合は "有効"、それ以外は "退会"）
+    is_active == "Available" ? "有効" : "退会"
+  end
 
 end

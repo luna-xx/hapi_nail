@@ -4,7 +4,7 @@
 <% @posts.each do |post| %>
   <tr>
     <!--ユーザープロフィール画像-->
-    <td><%= image_tag post.user.get_top_image(100,100) %></td>
+    <td><%= image_tag post.user.get_top_image_url(100,100) %></td>
     <td>ユーザーネーム：<%= post.user.name %></td>
     <!--投稿画像-->
     <td>

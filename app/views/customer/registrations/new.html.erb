@@ -37,14 +37,12 @@
     <br>
     <div class="row d-flex justify-content-center">
       <div class="col-2">
-        <%#= form_with model: @user do |f| %>
         <%= f.label :sex, "性別" %>
       </div>
-        <div class="col-2">
-          <%= f.radio_button :sex, "male", id: "sex_male" %> 男性
-          <%= f.radio_button :sex, "female", id: "sex_female" %> 女性
-        </div>
-        <%# end %>
+      <div class="col-2">
+        <%= f.radio_button :sex, "male", id: "sex_male" %> 男性
+        <%= f.radio_button :sex, "female", id: "sex_female" %> 女性
+      </div>
       </div>
     <br>
     <div class="row d-flex justify-content-center">
