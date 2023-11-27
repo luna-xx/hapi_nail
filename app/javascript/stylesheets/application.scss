@@ -1,1 +1,10 @@
 //@import "~bootstrap/scss/bootstrap";
+// top画像のサイズ指定
+.swiper-slide img {
+  width: 100%;
+}
+
+.swiper {
+  width: 40%;
+  
+}
