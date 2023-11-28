@@ -1,36 +1,37 @@
 <!--投稿詳細-->
 <div class="container">
-  <div class="row d-flex justify-content-center">
-    <h5 class="p-3 my-3">
+  <div class="d-flex justify-content-center">
+    <h2 class="d-inline-block border p-3 my-3">
       投稿詳細
-    </h5>
+    </h2>
   </div>
-  <div>
+  <!--投稿ユーザー-->
+  <div class="d-flex justify-content-center">
     <tr><%= image_tag @user.get_top_image_url(100,100) %></tr>
-  
-    <tr><b><%= @post.user.name %></b></tr>
-  
-    <div>
-      <%= link_to post_path(@post.id) do %>
-        <%= image_tag @post.get_image %>
-      <% end %>
-    </div>
-      
-    <h2>タイトル</h2>
-    <p><%= @post.title %></p>
-  
-    <h2>投稿文</h2>
-    <p><%= @post.text %></p>
-  
-    <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
-    
-    <h2>タグ</h2>
-    <!-- タグリスト -->
-    <% @posttags.each do |tag| %>
-       <i class="fa-sharp fa-solid fa-tag"></i>
-    　  <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+    <tr><%= @post.user.name %></tr>
+  </div>
+  <!--投稿タイトル-->
+  <div class="d-flex justify-content-center">
+    <h4 style="text-decoration:underline; text-decoration-color:#FFCCFF;">
+      <b><%= @post.title %></b>
+    </h4>
+  </div>
+  <!--投稿画像-->
+  <div class="d-flex justify-content-center">
+    <%= link_to post_path(@post.id) do %>
+      <%= image_tag @post.get_image, size: '700x450' %>
     <% end %>
-    <!--いいね機能-->
+  </div>
+  <!--投稿文-->
+  <div class="d-flex justify-content-center">
+    <p class=style: "width:100%", rows: "5"><%= @post.text %></p>
+  </div>
+  <!--投稿日時-->
+  <div class="d-flex justify-content-end">
+    <p><%= @post.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+  <!--いいね機能-->
+  <div class="d-flex justify-content-end">
     <% if @post.favorited_by?(current_user) %>
       <p>
         <%= link_to post_favorite_path(@post), method: :delete do %>
@@ -44,28 +45,34 @@
         <% end %>
       </p>
     <% end %>
-    <!--編集、削除ボタン-->
+  </div>
+  <!--編集、削除ボタン-->
+  <div class="d-flex justify-content-end">
     <% if @post.user == current_user %>
       <%= link_to "編集", edit_post_path(@post.id) %>
       <%= link_to "削除", post_path(@post.id), method: :delete, "data-confirm" => "本当に削除しますか？" %>
     <% end %>
   </div>
   <!--コメント機能-->
-  <div>
+  <div class="d-flex justify-content-start">
     <p>コメント件数：<%= @post.comments.count %></p>
-    <% @post.comments.each do |comment| %>
-      <p><%= image_tag comment.user.get_top_image(100,100) %></p>
-      <%= comment.user.name %>
-      <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
-      <% if comment.user == current_user %>
-        <%= link_to "削除", post_comment_path(comment.post,comment), method: :delete %>
+      <% @post.comments.each do |comment| %>
+        <p><%= image_tag comment.user.get_top_image(100,100) %></p>
+        <%= comment.user.name %>
+        <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+        <% if comment.user == current_user %>
+          <%= link_to "削除", post_comment_path(comment.post,comment), method: :delete %>
+        <% end %>
       <% end %>
-    <% end %>
   </div>
-  <div>
-    <%= form_with model: [@post, @comment] do |f| %>
-      <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+  <%= form_with model: [@post, @comment] do |f| %>
+    <div class="d-flex justify-content-center">
+      <%= f.text_area :comment, rows: '3', placeholder: "コメントをここに", style: "width: 70%;" %>
+    </div>
+    <br>
+    <div class="d-flex justify-content-center">
       <%= f.submit "送信する" %>
-    <% end %>
-  </div>
+    </div>
+    <br>
+  <% end %>
 </div>

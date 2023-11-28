@@ -41,18 +41,17 @@ Rails.application.routes.draw do
   resources :favorites, only: [:index]
 
 
-# 管理者
-  get "/admin" => "admin/homes#top"
+
 
   namespace :admin do
     # 管理者ホーム
-    root 'admin/posts#index'
+    get "/admin" => 'admin/posts#index'
 
     # ユーザー管理
     resources :users, only: [:index, :show, :edit, :update]
 
     # 投稿管理
-    resources :posts, only: [:index, :show, :edit, :create]
+    resources :posts, only: [:show, :edit, :create]
 
     # コメント管理
     get 'comments'

@@ -1,27 +1,27 @@
 <div class="container">
-  <div class="row d-flex justify-content-center">
-    <h5 class="p-3 my-3">
+  <div class="d-flex justify-content-center">
+    <h2 class="d-inline-block border p-3 my-3">
       投稿編集画面
-    </h5>
+    </h2>
   </div>
-  
-  <div class="row d-flex justify-content-center">
-  <%= form_with model: @post do |f| %>
-    <tr>
-      <td>投稿画像</td>
-      <td><%= f.file_field :image, accept: "image/*", class: "rounded" %></td>
-    </tr>
-    <tr>
-      <td>タイトル</td>
-      <td><%= f.text_field :title %></td>
-    </tr>
-    <tr>
-      <td>本文</td>
-      <td><%= f.text_area :text %></td>
-    </tr>
-  
-    <%= f.submit '保存' %>
-    
-  <% end %>
+  <div class="d-flex justify-content-center">
+    <%= form_with model: @post do |f| %>
+      <table class="table table-borderless">
+        <tr>
+         <%= image_tag @post.get_image, size: '700x450', class: "rounded" %>
+        </tr>
+        <tr>
+          <td>タイトル</td>
+          <td><%= f.text_field :title, style: "width:100%" %></td>
+        </tr>
+        <tr>
+          <td>投稿文</td>
+          <td><%= f.text_area :text, style: "width:100%", rows: "5" %></td>
+        </tr>
+        <tr>
+          <td><%= f.submit '保存', class:"btn btn-success" %></td>
+        </tr>
+      </table>
+    <% end %>
   </div>
 </div>

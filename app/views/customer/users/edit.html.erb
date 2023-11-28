@@ -10,11 +10,11 @@
       <%= form_with model: @user, url: user_path, method: :patch do |f| %>
       <table class="table table-borderless">
 
-          <!--<tr>-->
-          <!--  <td>プロフィール画像</td><br>-->
-          <!--  <td><%= image_tag @user.get_top_image_url(100, 100), size: '100x100', fallback: "no_image.jpg", class: "mb-3 profile-img" %></td><br>-->
-          <!--  <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>-->
-          <!--</tr>-->
+          <tr>
+            <td>プロフィール画像</td><br>
+            <td><%= image_tag @user.get_top_image_url(100, 100), size: '100x100', fallback: "no_image.jpg", class: "mb-3 profile-img" %></td><br>
+            <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>
+          </tr>
 
           <tr>
             <td width="30%">ニックネーム</td>
