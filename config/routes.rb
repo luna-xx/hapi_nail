@@ -46,7 +46,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     # 管理者ホーム
-    get 'homes/top'
+    root 'admin/posts#index'
 
     # ユーザー管理
     resources :users, only: [:index, :show, :edit, :update]

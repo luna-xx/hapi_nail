@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   has_one_attached  :image
   
-  validates :image, presence: true
+  #validates :image, presence: true
   validates :title, presence: true
   validates :text,  presence: true
   

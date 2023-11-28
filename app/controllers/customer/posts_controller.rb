@@ -1,4 +1,5 @@
 class Customer::PostsController < ApplicationController
+  before_action :authenticate_user!
 
   def new
     # 空のインスタンス生成
@@ -31,20 +32,22 @@ class Customer::PostsController < ApplicationController
     @post.user_id = current_user.id
     
     # 画像の処理
-    @post.image = params[:post][:images]
+    #@post.image = params[:post][:image]
     
     # 画像の存在チェック
-    if params[:post][:images].blank?
+    
+    unless params[:post][:image]
       @post.errors.add(:image, "画像を選択してください")
       render :new
       return
     end
     
     #データをデータベースに保存するためのsaveメソッド実行
-    if @post.image.present? && @post.save
+
+    if @post.save
       # タグの保存
-       @post.tag_list = params[:post][:tag_list] if params[:post][:tag_list]
-   　   @post.save_tags
+      # @post.tag_list = params[:post][:tag_list] if params[:post][:tag_list]
+      # @post.save
       #マイページ画面へリダイレクト
       redirect_to post_path(@post), notice: '投稿完了'
     else
@@ -55,9 +58,7 @@ class Customer::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:name].split(',') if params[:post][:name].present?
     if @post.update(post_params)
-      @post.save_tags(tag_list) if tag_list
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -82,6 +83,6 @@ class Customer::PostsController < ApplicationController
   private
   #ストロングパラメータ
   def post_params
-    params.require(:post).permit(:title, :text, :image, :tag_id, :comment)
+    params.require(:post).permit(:title, :text, :image)
   end
 end

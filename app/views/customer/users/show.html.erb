@@ -10,7 +10,7 @@
       <!--ユーザーの詳細-->
       <div class="d-flex justify-content-center">
         <h4><%= @user.name %></h4>
-        <%= image_tag @user.get_top_image_url(100,100) %>
+        
         <!--ゲストユーザーかどうかの判別-->
           <% unless @user.guest_user? %>
             <div>
@@ -21,19 +21,13 @@
           <% end %>
       </div>
     <% end %>
-   
+
    <!-- ユーザーの投稿一覧 -->
   <% @post.each do |post| %>
-    <div>
-      <!--プロフィール画像-->
-      <tr><%= image_tag post.user.get_top_image_url(20,20) %></tr>
-      <!--ユーザーニックネーム-->
-      <tr><%= post.user.name %></tr>
-    </div>
-    <!--投稿画像-->
-    <%= link_to post_path(post.id) do %>
-      <%= image_tag post.get_image, size: '300x250' %>
-    <% end %>
-      
+      <!--投稿画像-->
+      <%= link_to post_path(post.id) do %>
+        <%= image_tag post.get_image, size: '300x250' %>
+      <% end %>
+
   <% end %>
 </div>

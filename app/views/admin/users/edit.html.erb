@@ -12,17 +12,17 @@
           <table class="table table-borderless">
             <%= form_with model: [:admin, @user] do |f| %>
             
-            <tr>
-              <td>プロフィール画像</td>
-            </tr>
+            <!--<tr>-->
+            <!--  <td>プロフィール画像</td>-->
+            <!--</tr>-->
             
-            <tr>
-              <td><%= image_tag @user.top_image, size: '100x100', fallback: "no_image.jpg", class: "mb-3 profile-img" %></td>
-            </tr>
+            <!--<tr>-->
+            <!--  <td><%= image_tag @user.get_top_image_url(100, 100), size: '100x100', fallback: "no_image.jpg" %></td><br>-->
+            <!--</tr>-->
             
-            <tr>
-              <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>
-            </tr>
+            <!--<tr>-->
+            <!--  <td><%= f.file_field :top_image, class: "mb-3 profile-img" %></td>-->
+            <!--</tr>-->
             
             <tr>
               <td>会員ID</td>

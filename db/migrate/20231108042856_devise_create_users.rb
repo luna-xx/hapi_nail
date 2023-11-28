@@ -14,6 +14,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string :sex,                null: false
       # プロフィール画像
       t.string :top_image,          default: "no_image.jpg"
+      t.string :top_image_id
       # メールアドレス
       t.string :email,              null: false, default: ""
       # 暗号化されたパスワード

@@ -71,9 +71,7 @@ ActiveRecord::Schema.define(version: 2023_11_14_121046) do
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
     t.string "title", null: false
-    t.string "image", null: false
     t.text "text", null: false
-    t.string "tag_list"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -97,6 +95,7 @@ ActiveRecord::Schema.define(version: 2023_11_14_121046) do
     t.string "furigana_name", null: false
     t.string "sex", null: false
     t.string "top_image", default: "no_image.jpg"
+    t.string "top_image_id"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "introduction"

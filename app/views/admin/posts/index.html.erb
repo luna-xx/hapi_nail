@@ -7,9 +7,10 @@
   </div>
   
   <% @posts.each do |post| %>
+
     <div>
       <!--プロフィール画像-->
-      <tr><%= image_tag post.user.get_top_image_url(20,20) %></tr>
+      <!--<tr><%= image_tag post.user.get_top_image_url(20,20), class: "rounded-circle" %></tr>-->
       <!--ユーザーニックネーム-->
       <tr><%= post.user.name %></tr>
     </div>

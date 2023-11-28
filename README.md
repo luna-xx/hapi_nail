@@ -33,8 +33,8 @@
 ## 設計書
 <!--テーマを設定・提出する時点では不要です-->
 
- [テーブル定義書](https://docs.google.com/spreadsheets/d/1vpj_OQ9LQBDb_cw44dNb5dFHPVXoHFNI7xtYcmbnJh8/edit?usp=sharing)  
- [アプリケーション詳細設計書]（）
+ <!--[テーブル定義書](https://docs.google.com/spreadsheets/d/1vpj_OQ9LQBDb_cw44dNb5dFHPVXoHFNI7xtYcmbnJh8/edit?usp=sharing)  -->
+
 ​
 ## 開発環境
 - OS：Linux(CentOS)
@@ -44,4 +44,4 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- 使用検討中
+- Pinterest

@@ -16,16 +16,17 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   # プロフィール画像
   has_one_attached :top_image
-
+  
 
   # ユーザーのプロフィール画像を指定したサイズにリサイズ処理
+
+  
   def get_top_image_url(width, height)
-    if top_image.attached? && top_image.blob.present?
-      top_image.variant(resize: "#{width}x#{height}").processed.url
-    else
-      # ファイルがアタッチされていない場合の処理（デフォルト画像など）
-      'no_image.jpg'
+    unless top_image.attached?
+      file_path = Rails.root.join('app/assets/images/no_image.jpg')
+      top_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
+    top_image.variant(resize_to_limit: [width, height]).processed
   end
 
   # ゲストログイン
@@ -59,7 +60,7 @@ class User < ApplicationRecord
   def withdraw
     update(is_active: false)
   end
-  
+
   def user_status
     # user_status の定義（is_active が "Available" の場合は "有効"、それ以外は "退会"）
     is_active == "Available" ? "有効" : "退会"
