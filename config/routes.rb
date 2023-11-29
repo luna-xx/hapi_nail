@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   end
 
   # 検索関連
-  get "/search", to: "searches#search"
+  get "/search", to: "customer/searches#index", as: :search
 
   # いいね関連
   resources :favorites, only: [:index]

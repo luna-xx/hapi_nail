@@ -19,14 +19,12 @@ class User < ApplicationRecord
   
 
   # ユーザーのプロフィール画像を指定したサイズにリサイズ処理
-
-  
   def get_top_image_url(width, height)
     unless top_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
       top_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
-    top_image.variant(resize_to_limit: [width, height]).processed
+      top_image.variant(resize_to_limit: [width, height]).processed
   end
 
   # ゲストログイン
@@ -64,6 +62,25 @@ class User < ApplicationRecord
   def user_status
     # user_status の定義（is_active が "Available" の場合は "有効"、それ以外は "退会"）
     is_active == "Available" ? "有効" : "退会"
+  end
+  
+  # 検索機能
+  def self.looks(search, word)
+    # 完全一致
+    if search == "perfect_match"
+      @user = User.where("nick_name LIKE ? or introduction LIKE ?", "%#{word}%", "%#{word}%")
+    # 前方一致
+    elsif search == "forward_match"
+      @user = User.where("nick_name LIKE ? or introduction LIKE ?", "%#{word}%", "%#{word}%")
+    # 後方一致
+    elsif search == "backward_match"
+      @user = User.where("nick_name LIKE ? or introduction LIKE ?", "%#{word}%", "%#{word}%")
+    # 部分一致
+    elsif search == "partial_match"
+      @user = User.where("nick_name LIKE ? or introduction LIKE ?", "%#{word}%", "%#{word}%")
+    else
+      @user = User.all
+    end
   end
 
 end

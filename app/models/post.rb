@@ -43,4 +43,24 @@ class Post < ApplicationRecord
   def favorited_by?(user)
     favorites.exists?(user_id: user.id)
   end
+  
+  # 検索機能
+  def self.looks(search, word)
+    # 完全一致
+    if search == "perfect_match"
+      @post = Post.where("title LIKE ? or text LIKE ?", "%#{word}%", "%#{word}%")
+    # 前方一致
+    elsif search == "forward_match"
+      @post = Post.where("title LIKE ? or text LIKE ?", "%#{word}%", "%#{word}%")
+    # 後方一致
+    elsif search == "backward_match"
+      @post = Post.where("title LIKE ? or text LIKE ?", "%#{word}%", "%#{word}%")
+    # 部分一致
+    elsif search == "partial_match"
+      @post = Post.where("title LIKE ? or text LIKE ?", "%#{word}%", "%#{word}%")
+    else
+      @post = Post.all
+    end
+  end
+  
 end
