@@ -14,7 +14,7 @@
       <!--ユーザーの詳細-->
       <div class="d-flex justify-content-center">
         <h4><%= @user.nick_name %></h4>
-        <%= image_tag @user.get_top_image_url(200,200) %>
+        <%= image_tag @user.get_top_image_url(200,200), class:"rounded-circle", size: "100x100" %>
         <!--ゲストユーザーかどうかの判別-->
           <% unless @user.guest_user? %>
             <div>
