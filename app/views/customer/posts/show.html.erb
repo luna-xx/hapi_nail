@@ -19,9 +19,11 @@
   </div>
   <!--投稿画像-->
   <div class="d-flex justify-content-center">
-    <%= link_to post_path(@post.id) do %>
-      <%= image_tag @post.get_image, size: '700x450' %>
-    <% end %>
+    <div class="img-container">
+      <%= link_to post_path(@post.id) do %>
+        <%= image_tag @post.get_image, size: '700x450' %>
+      <% end %>
+    </div>
   </div>
   <!--投稿文-->
   <div class="d-flex justify-content-center">
