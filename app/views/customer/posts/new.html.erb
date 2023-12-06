@@ -5,8 +5,17 @@
     </h2>
   </div>
 
-  <div class="d-flex justify-content-center">
+  <!--バリデーションによるエラーメッセージ-->
+  <% if @post.errors.any? %>
+    <%= @post.errors.count %>件のエラーが発生しました
+    <ul>
+      <%= @post.errors.full_messages.each do |message| %>
+       <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
 
+  <div class="d-flex justify-content-center">
  　  <%= form_with model: @post, local: true do |f| %>
       <table class="table table-borderless">
         <!--imageの入力フォーム-->

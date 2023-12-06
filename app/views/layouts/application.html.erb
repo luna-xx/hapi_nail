@@ -22,9 +22,16 @@
   <body>
     <!--ヘッダーの部分テンプレート-->
     <%= render 'layouts/header' %>
-
+    
+    <!--フラッシュメッセージ-->
+    <div class="d-flex justify-content-center">
+      <%= flash.each do |message_type, message| %>
+        <div class="flash-message <%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
+    
     <%= yield %>
-
+    
     <!--フッターの部分テンプレート-->
     <%= render 'layouts/footer' %>
   </body>

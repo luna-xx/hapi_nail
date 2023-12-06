@@ -39,9 +39,12 @@ class Customer::PostsController < ApplicationController
     end
     
     if @post.save
+      # フラッシュメッセージ
+       flash[:notice] = "投稿完了しました"
       #マイページ画面へリダイレクト
-      redirect_to post_path(@post), notice: '投稿完了'
+      redirect_to post_path(@post)
     else
+      flash.now[:alert] = "投稿失敗しました"
       @post.errors.add(:image, "画像を選択してください")
       render :new
     end

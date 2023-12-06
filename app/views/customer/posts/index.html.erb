@@ -6,10 +6,12 @@
   <p>ユーザーネーム</p>
   <span><%= post.user.name %></span>
   
-  <p>画像</p>
-  <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_image %>
-  <% end %>
+  <!--投稿画像-->
+  <div class="img-container">
+    <%= link_to post_path(post.id) do %>
+      <%= image_tag post.get_image, size: "200x200" %>
+    <% end %>
+  </div>
   
   <p>タイトル</p>
   <span><%= post.title %></span>
