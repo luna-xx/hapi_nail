@@ -12,23 +12,35 @@
   <table class="table table-bordered p-3 my-3">
     <div>
       <!--検索対象モデルがuserの時 -->
-      <% if @range == "User" %>
-        <% @user.each do |user| %>
+      <% if @range == "ユーザー" %>
+        <% if @user.present? %>
+          <% @user.each do |user| %>
+            <tr>
+              <td><%= user.nick_name %></td>
+            </tr>
+          <% end %>
+        <% else %>
           <tr>
-            <td><%= user.nick_name %></td>
+            <td>該当のユーザーはいません</td>
           </tr>
         <% end %>
       <% else %>
       <!--検索対象モデルがUserではない時(= 検索対象モデルがpostの時) -->
-        <% @posts.each do |post| %>
-          <tr class="d-flex align-items-center">
-            <td><%= image_tag post.get_image, size: '150x150' %></td>
-            <td>
-              <%= link_to post_path(post.id) do %>
-                <%= post.title %>
-              <% end %>
-            </td>
-            <td><%= post.text %></td>
+        <% if @posts.present? %>
+          <% @posts.each do |post| %>
+            <tr class="d-flex align-items-center">
+              <td><%= image_tag post.get_image, size: '150x150' %></td>
+              <td>
+                <%= link_to post_path(post.id) do %>
+                  <%= post.title %>
+                <% end %>
+              </td>
+              <td><%= post.text %></td>
+            </tr>
+          <% end %>
+        <% else %>
+          <tr>
+            <td>該当の投稿はありません。</td>
           </tr>
         <% end %>
       <% end %>
